@@ -1,0 +1,47 @@
+1)select first_name,
+  last_name,
+  commission_pct,
+  manager_id
+  from employees
+  WHERE commission_pct is NOT NULL and manager_id is NULL
+
+2)select first_name,
+  phone_number,
+  email,
+  job_id
+  from employees
+  WHERE job_id not like "s%"
+
+3)select first_name
+  from employees
+  WHERE first_name like "___d%"
+
+4)select first_name,
+  last_name,
+  phone_number
+  from employees
+  WHERE phone_number like "515%"
+
+5)select first_name,
+  last_name,
+  salary,
+  commission_pct
+  from employees
+  WHERE salary + salary * commission_pct > 10000
+
+6)select region_name
+  from regions
+  WHERE region_name not like "% %"
+
+7)select *
+  from orders
+  WHERE OrderDate like "1997%"
+
+8)select *
+  from orders
+  WHERE CustomerID BETWEEN 10 and 30 and ShipperID BETWEEN 4+1 and 10-1
+
+9)select SupplierID,
+  SupplierName
+  from suppliers
+  WHERE SupplierName like "% % % % %"
