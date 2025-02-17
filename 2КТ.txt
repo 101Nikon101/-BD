@@ -1,0 +1,39 @@
+1)
+SELECT t1.name, SUM(t3.price)
+FROM passengers t1
+JOIN fly_mapping t2 ON t1.id = t2.passenger_id
+JOIN flying t3 ON t2.flying_id = t3.id
+GROUP BY t1.id;
+2)
+SELECT t1.age_group, round(avg(t3.flight_time), 2)
+FROM passengers t1
+JOIN fly_mapping t2 ON t1.id = t2.passenger_id
+JOIN flying t3 ON t2.flying_id = t3.id
+GROUP BY t1.age_group;
+3)
+select name, max(fcount)
+from (SELECT t1.name as name, COUNT(flying_id) as fcount
+FROM passengers t1
+JOIN fly_mapping t2 ON t1.id = t2.passenger_id
+GROUP BY t1.name)
+4)
+SELECT t2.name, t2.fcount
+FROM (
+    SELECT AVG(fcount) AS acount
+    FROM (
+        SELECT t1.name AS name, COUNT(t2.flying_id) AS fcount
+        FROM passengers t1
+        JOIN fly_mapping t2 ON t1.id = t2.passenger_id
+        GROUP BY t1.name))
+t1
+JOIN (
+        SELECT t1.name AS name, COUNT(t2.flying_id) AS fcount
+        FROM passengers t1
+        JOIN fly_mapping t2 ON t1.id = t2.passenger_id
+        GROUP BY t1.name)
+t2
+where t2.fcount > t1.acount
+5)
+SELECT point_to, count(*)
+FROM flying
+GROUP BY point_to
